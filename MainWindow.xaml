@@ -1,0 +1,54 @@
+﻿<Window x:Class="GastroWaga.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="GastroWaga – podgląd DYMO" Height="420" Width="560">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="20">
+            <StackPanel>
+                <TextBlock x:Name="WeightText" Text="0.000 kg" FontSize="56" FontWeight="Bold" />
+                <TextBlock x:Name="StatusText" Text="Niepołączony" Margin="0,8,0,12" FontSize="14"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                    <Button Content="Połącz z wagą" Width="150" Margin="0,0,8,0" Click="Connect_Click"/>
+                    <Button Content="Rozłącz" Width="120" Click="Disconnect_Click"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="Jednostki:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                    <ComboBox x:Name="UnitCombo" Width="120" SelectionChanged="UnitCombo_SelectionChanged">
+                        <ComboBoxItem Content="kg" IsSelected="True"/>
+                        <ComboBoxItem Content="g"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <GroupBox Header="TARE (waga opakowania) – odejmowana od wyniku" Margin="0,8,0,0">
+                    <StackPanel Margin="10">
+                        <TextBlock Text="TARE aktualnie:"/>
+                        <TextBlock x:Name="TareText" Text="0 g" FontWeight="Bold" Margin="0,2,0,8"/>
+
+                        <WrapPanel Margin="0,0,0,8">
+                            <Button Content="Ustaw TARE = bieżąca waga" Click="TareFromCurrent_Click" Margin="0,0,8,8"/>
+                            <Button Content="Wyczyść TARE" Click="TareClear_Click" Margin="0,0,8,8"/>
+                        </WrapPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <TextBlock Text="Szybkie TARE:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                            <ComboBox x:Name="TarePresetCombo" Width="220" SelectionChanged="TarePresetCombo_SelectionChanged">
+                                <ComboBoxItem Content="— wybierz —" IsSelected="True"/>
+                                <ComboBoxItem Content="Kuwetka 12 g" Tag="12"/>
+                                <ComboBoxItem Content="Słoik 250 g" Tag="250"/>
+                                <ComboBoxItem Content="GN 1/9 – 90 g" Tag="90"/>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Inna TARE (g):" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                            <TextBox x:Name="TareCustomText" Width="80" Margin="0,0,8,0" Text="0"/>
+                            <Button Content="Ustaw" Click="TareCustomSet_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Window>
