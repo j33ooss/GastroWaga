@@ -15,7 +15,6 @@ namespace GastroWaga
         private void Application_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
             MessageBox.Show(e.Exception.ToString(), "Błąd (nieobsłużony)", MessageBoxButton.OK, MessageBoxImage.Error);
-            e.Handled = true;
         }
     }
 }
